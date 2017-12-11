@@ -1,0 +1,54 @@
+
+public class TrapRoom extends Room
+{
+	public TrapRoom(int x, int y) 
+	{
+		super(x, y);
+	}
+	@Override
+	public void enterRoom(Person x) {
+		occupant = x;
+		x.setxLoc(this.xLoc);
+		x.setyLoc(this.yLoc);
+		
+		// the chance of encountering what type of trap room
+		double roomtype = Math.random();
+		
+		//percent chance to dodge the arrow
+		double dodge = Math.random();
+		
+		//an trap room that shoots an arrow at the player; common and easier to survive
+		if (roomtype >.7)
+		{
+			System.out.println("You looked down and realized you have stepped on a pressure plate! "
+					+ "As you look up, you see an arrow fly straight at you!");	
+			if (dodge <.3)
+			{
+				System.out.println("Oof Right between the eyes! G A M E  O V E R!");
+				Runner.gameOff();	
+			}
+			else if (dodge >.3)
+			{
+				System.out.println("You managed to dodge arrow Well Done!");
+			}
+		}
+	
+		// a trap room in which the floor opens and the player falls to his/her death; rare and usually fatal 
+		if (roomtype == .1)
+		{
+			System.out.println("Click! The Floor opened up! There are spikes at the bottom and you are falling right at it!");	
+			
+			if (dodge >.8)
+			{
+				System.out.println("Due to your quick thinking you grabbed onto the edge and surived! Well Done!");
+			}
+			else if (dodge <.8)
+			{
+				System.out.println("No way you could have escaped! G A M E  O V E R!");
+				Runner.gameOff();	
+			}
+		}
+	
+	
+	}
+}
